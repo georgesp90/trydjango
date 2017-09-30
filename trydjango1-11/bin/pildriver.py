@@ -1,4 +1,4 @@
-#!/Users/patrick/Desktop/dev/trydjango1-11/bin/python3
+#!/Users/patrick/Desktop/dev/trydjango/trydjango1-11/bin/python3
 """PILdriver, an image-processing calculator using PIL.
 
 An instance of class PILDriver is essentially a software stack machine

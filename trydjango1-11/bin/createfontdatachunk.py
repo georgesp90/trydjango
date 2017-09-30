@@ -1,4 +1,4 @@
-#!/Users/patrick/Desktop/dev/trydjango1-11/bin/python3
+#!/Users/patrick/Desktop/dev/trydjango/trydjango1-11/bin/python3
 from __future__ import print_function
 import base64
 import os

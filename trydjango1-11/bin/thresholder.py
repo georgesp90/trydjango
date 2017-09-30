@@ -1,4 +1,4 @@
-#!/Users/patrick/Desktop/dev/trydjango1-11/bin/python3
+#!/Users/patrick/Desktop/dev/trydjango/trydjango1-11/bin/python3
 #
 # The Python Imaging Library
 # $Id$
