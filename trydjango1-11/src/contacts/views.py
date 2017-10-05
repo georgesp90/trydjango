@@ -33,6 +33,6 @@ class ContactsDetailView(DetailView):
 
 	def get_object(self, *args, **kwargs):
 		cont_id = self.kwargs.get('cont_id')
-		obj =get_object_or_404(UserContacts, id=cont_id)
+		obj = get_object_or_404(UserContacts, id=cont_id)
 		return obj
 	 
