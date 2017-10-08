@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block head_title %} Add Contact || {{ block.super }}{% endblock head_title %}
+
+{% block content %}
+<h1>Add Contact</h1> 
+<form method="POST"> {% csrf_token %}
+	<input type="text" name="name" placeholder="Contact Name"><br/>
+	<input type="text" name="phone" placeholder="Contact Number"><br/>
+	<input type="text" name="location" placeholder="location"><br/>
+	<button type="submit">Save</button>
+</form>
+{% endblock content %}

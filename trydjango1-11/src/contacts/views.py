@@ -1,10 +1,28 @@
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
 
 from .models import UserContacts
+from .forms import ContactCreateForm
+
+
+def contact_create_view(request):
+	if request.method == 'POST':
+		name = request.POST.get('name')
+		pnone = request.POST.get('pnone')
+		location = request.POST.get('location')
+		obj = UserContacts.objects.create(
+				name = name,
+				phone = pnone,
+				location = location
+			)
+		return HttpResponseRedirect('/contacts_list/')
+	template_name = 'contacts/contacts_list_form.html'
+	context = {}
+	return render(request, template_name, context) 
+
 
 def contacts_list_view(request):
 	template_name = 'contacts/contacts_list.html'
@@ -29,7 +47,7 @@ class ContactsListView(ListView):
 
 
 class ContactsDetailView(DetailView):
-	queryset = UserContacts.objects.all()	
+	queryset = UserContacts.objects.all() #filter(location__iexact='nys') #filer it by user
 
 	# def get_object(self, *args, **kwargs):
 	# 	cont_id = self.kwargs.get('cont_id')
