@@ -6,10 +6,10 @@ from .utils import unique_slug_generator
 # Create your models here.
 class UserContacts(models.Model):
 	name	 	= models.CharField(max_length=120)
-	phone 	 	= models.CharField(max_length=9, null=True, blank=False)
+	phone 	 	= models.CharField(max_length=9, null=True, blank=True)
 	location 	= models.CharField(max_length=120, null=True, blank=True)
 	timestamp 	= models.DateTimeField(auto_now_add=True)
-	slug 		= models.SlugField(null=True, blank=False)
+	slug 		= models.SlugField(null=True, blank=True)
 
 	def __str__(self):
 		return self.name
@@ -24,11 +24,8 @@ class UserContacts(models.Model):
 		verbose_name_plural ='User Contacts'
 	
 def uc_pre_save_reciever(sender, instance, *args, **kwargs):
-	print('saving..')
-	print(instance.timestamp)
-	# if not instance.slug:
-	# 	instance.slug = unique_slug_generator(instance)
-	# 	instance.save()
+	if not instance.slug:
+		instance.slug = unique_slug_generator(instance)
 
 
 def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
@@ -41,6 +38,6 @@ def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
 	
 pre_save.connect(uc_pre_save_reciever, sender=UserContacts)
 
-post_save.connect(uc_post_save_reciever, sender=UserContacts)
+# post_save.connect(uc_post_save_reciever, sender=UserContacts)
 
 	
