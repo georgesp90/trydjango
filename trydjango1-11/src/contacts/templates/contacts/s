@@ -1,8 +1,0 @@
-{% extends "base.html" %}
-
-{% block head_title %} Add Contact || {{ block.super }}{% endblock head_title %}
-
-{% block content %}
-<h1>Add Contact</h1> 
-<form	
-{% endblock content %}

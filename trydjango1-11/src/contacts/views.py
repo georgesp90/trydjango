@@ -2,22 +2,17 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
+from .forms import ContactCreateForm, UserContactsCreateForm
 from .models import UserContacts
-from .forms import ContactCreateForm
 
 
 def contact_create_view(request):
-	form = ContactCreateForm(request.POST or None)
+	form = UserContactsCreateForm(request.POST or None)
 	errors = None
 	if form.is_valid():
-		obj = UserContacts.objects.create(
-				name = form.cleaned_data.get('name'),
-				phone = form.cleaned_data.get('phone'),
-				location = form.cleaned_data.get('location')
-
-			)
+		form.save() 
 		return HttpResponseRedirect('/contacts_list/')
 	if form.errors:
 		errors = form.errors
@@ -57,3 +52,9 @@ class ContactsDetailView(DetailView):
 	# 	obj =  get_object_or_404(UserContacts, id=cont_id)
 	# 	return obj
 	#  
+
+class UserContactsCreateView(CreateView):
+	form_class = UserContactsCreateForm
+	template_name = 'contacts/contacts_list_form.html'
+	success_url = '/contacts_list/'
+

@@ -1,4 +1,6 @@
 from django import forms
+from .models import UserContacts 
+
 
 
 class ContactCreateForm(forms.Form):
@@ -11,3 +13,14 @@ class ContactCreateForm(forms.Form):
 		if name == 'Hello':
 			raise forms.ValidationError('Not a valid name')
 		return name
+
+
+class UserContactsCreateForm(forms.ModelForm):
+	class Meta:
+		model = UserContacts
+		fields =[
+			'name',
+			'phone',
+			'location'
+		]
+
