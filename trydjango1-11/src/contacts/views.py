@@ -9,18 +9,21 @@ from .forms import ContactCreateForm
 
 
 def contact_create_view(request):
-	if request.method == 'POST':
-		name = request.POST.get('name')
-		pnone = request.POST.get('pnone')
-		location = request.POST.get('location')
+	form = ContactCreateForm(request.POST or None)
+	errors = None
+	if form.is_valid():
 		obj = UserContacts.objects.create(
-				name = name,
-				phone = pnone,
-				location = location
+				name = form.cleaned_data.get('name'),
+				phone = form.cleaned_data.get('phone'),
+				location = form.cleaned_data.get('location')
+
 			)
 		return HttpResponseRedirect('/contacts_list/')
+	if form.errors:
+		errors = form.errors
+			
 	template_name = 'contacts/contacts_list_form.html'
-	context = {}
+	context = {"form": form, "errors": errors}
 	return render(request, template_name, context) 
 
 

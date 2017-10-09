@@ -4,10 +4,17 @@
 
 {% block content %}
 <h1>Add Contact</h1> 
+{% if errors %}
+{{ errors }}
+{% endif %}
 <form method="POST"> {% csrf_token %}
-	<input type="text" name="name" placeholder="Contact Name"><br/>
-	<input type="text" name="phone" placeholder="Contact Number"><br/>
-	<input type="text" name="location" placeholder="location"><br/>
+	{{ form.as_p }}
 	<button type="submit">Save</button>
 </form>
 {% endblock content %}
+
+
+
+<!-- 	<input type="text" name="name" placeholder="Contact Name"><br/>
+	<input type="text" name="phone" placeholder="Contact Number"><br/>
+	<input type="text" name="location" placeholder="location"><br/> -->
