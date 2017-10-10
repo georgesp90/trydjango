@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 
@@ -5,7 +6,10 @@ from django.db.models.signals import pre_save, post_save
 from .utils import unique_slug_generator
 from .validators import validate_timezone
 
+User = settings.AUTH_USER_MODEL
+
 class UserContacts(models.Model):
+	 
 	name	 	= models.CharField(max_length=120)
 	phone 	 	= models.CharField(max_length=9, null=True, blank=True)
 	location 	= models.CharField(max_length=120, null=True, blank=True)
