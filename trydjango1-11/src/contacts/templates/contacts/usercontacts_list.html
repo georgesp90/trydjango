@@ -3,13 +3,34 @@
 {% block head_title %}Contacts List || {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-<h1> Contacts List</h1>
+<h1> Contact List</h1>
 
-<ul>
+<table class="table table-striped" >
+	{% for obj in object_list %}
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td><a href='/contacts_list/{{obj.slug}}/'>{{ obj.name }}</td>
+      <td>{{ obj.phone }}</td>
+      <td>{{ obj.location }}</td>
+    </tr>
+  </tbody>
+  	{% endfor %}
+</table>
+
+<!-- <ul>
 	{% for obj in object_list %}
 		<li><a href='/contacts_list/{{obj.slug}}/'>{{ obj.name }} </a> <br/>{{ obj.phone }} 
 			{{ obj.location }}
 		</li>
 	{% endfor %}
-</ul>
+</ul> -->
 {% endblock content %}

@@ -17,6 +17,10 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from django.contrib.auth.views import LoginView
+
+
+
 from contacts.views import (
 	contact_create_view,
 	contacts_list_view,
@@ -28,6 +32,7 @@ from contacts.views import (
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='home.html')),
+    url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^contacts_list/$', ContactsListView.as_view()),
     url(r'^contacts_list/create/$', UserContactsCreateView.as_view()),
     # url(r'^contacts_list/create/$', contact_create_view),
