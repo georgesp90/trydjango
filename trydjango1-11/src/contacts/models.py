@@ -9,7 +9,7 @@ from .validators import validate_timezone
 User = settings.AUTH_USER_MODEL
 
 class UserContacts(models.Model):
-	 
+	owner 		= models.ForeignKey(User)
 	name	 	= models.CharField(max_length=120)
 	phone 	 	= models.CharField(max_length=9, null=True, blank=True)
 	location 	= models.CharField(max_length=120, null=True, blank=True)

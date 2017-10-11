@@ -12,9 +12,14 @@ def contact_create_view(request):
 	form = UserContactsCreateForm(request.POST or None)
 	errors = None
 	if form.is_valid():
-		form.save() 
-		return HttpResponseRedirect('/contacts_list/')
-	if form.errors:
+		if request.user.is_authenticated():
+			instance = form.save(commit=False)
+			instance.owner = request.user
+			instance.save() 
+			return HttpResponseRedirect('/contacts_list/')
+		else:
+			return HttpResponseRedirect('/login/')
+	if form.errors: 
 		errors = form.errors
 			
 	template_name = 'contacts/contacts_list_form.html'
@@ -46,12 +51,6 @@ class ContactsListView(ListView):
 
 class ContactsDetailView(DetailView):
 	queryset = UserContacts.objects.all() #filter(location__iexact='nys') #filer it by user
-
-	# def get_object(self, *args, **kwargs):
-	# 	cont_id = self.kwargs.get('cont_id')
-	# 	obj =  get_object_or_404(UserContacts, id=cont_id)
-	# 	return obj
-	#  
 
 class UserContactsCreateView(CreateView):
 	form_class = UserContactsCreateForm
