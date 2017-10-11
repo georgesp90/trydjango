@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
@@ -7,7 +9,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .forms import ContactCreateForm, UserContactsCreateForm
 from .models import UserContacts
 
-
+@login_required(login_url='/login/')
 def contact_create_view(request):
 	form = UserContactsCreateForm(request.POST or None)
 	errors = None
@@ -52,7 +54,7 @@ class ContactsListView(ListView):
 class ContactsDetailView(DetailView):
 	queryset = UserContacts.objects.all() #filter(location__iexact='nys') #filer it by user
 
-class UserContactsCreateView(CreateView):
+class UserContactsCreateView(LoginRequiredMixin, CreateView):
 	form_class = UserContactsCreateForm
 	template_name = 'contacts/contacts_list_form.html'
 	success_url = '/contacts_list/'
