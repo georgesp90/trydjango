@@ -57,3 +57,8 @@ class UserContactsCreateView(CreateView):
 	template_name = 'contacts/contacts_list_form.html'
 	success_url = '/contacts_list/'
 
+	def form_valid(self, form):
+		instance = form.save(commit=False)
+		instance.owner = self.request.user
+		return super(UserContactsCreateView, self).form_valid(form)
+
