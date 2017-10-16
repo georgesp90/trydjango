@@ -9,7 +9,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .forms import ContactCreateForm, UserContactsCreateForm
 from .models import UserContacts
 
-@login_required(login_url='/login/')
+@login_required()
 def contact_create_view(request):
 	form = UserContactsCreateForm(request.POST or None)
 	errors = None
@@ -56,8 +56,9 @@ class ContactsDetailView(DetailView):
 
 class UserContactsCreateView(LoginRequiredMixin, CreateView):
 	form_class = UserContactsCreateForm
+	login_url = '/login/'
 	template_name = 'contacts/contacts_list_form.html'
-	success_url = '/contacts_list/'
+	success_url = '/contacts-list/'
 
 	def form_valid(self, form):
 		instance = form.save(commit=False)

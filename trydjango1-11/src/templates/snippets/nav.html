@@ -5,21 +5,32 @@
   <a class="navbar-brand" href="/"><h1>11:11.delivery</h1>
 </a>
   <div class="collapse navbar-collapse" id="navbarText">
-  	   <span class="navbar-text">
- {% if user.is_authenticated %}
-	{{ request.user }}
-    {% else %}
-    {% endif %}
+  	<span class="navbar-text">
+            {% if user.is_authenticated %}
+            {{request.user}}
+            {% else %}
+            {% endif %}
     </span>
+
+
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacts-list' %}">Contacts List</a>
+          </li>
+      {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about/">About <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'about' %}">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/contact/">Contact <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
       </li>
     </ul>
   </div>

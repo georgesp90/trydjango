@@ -50,7 +50,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
+
+
 ROOT_URLCONF = 'muypicky.urls'
+LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {

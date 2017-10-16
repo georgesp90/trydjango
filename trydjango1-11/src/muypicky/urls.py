@@ -31,13 +31,13 @@ from contacts.views import (
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^login/$', LoginView.as_view(), name='login'),
-    url(r'^contacts_list/$', ContactsListView.as_view()),
-    url(r'^contacts_list/create/$', UserContactsCreateView.as_view()),
+    url(r'^contacts_list/$', ContactsListView.as_view(), name='contacts-list'),
+    url(r'^contacts_list/create/$', UserContactsCreateView.as_view(), name='create-contact'),
     # url(r'^contacts_list/create/$', contact_create_view),
     url(r'^contacts_list/(?P<slug>[\w-]+)/$', ContactsDetailView.as_view()),
     # url(r'^contacts_list/west$', WestCoastUserContactView.as_view()),
-    url(r'^about/$', TemplateView.as_view(template_name='about.html')),
-    url(r'^contact/$', TemplateView.as_view(template_name='contact.html')),
+    url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
+    url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
 ]
