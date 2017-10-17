@@ -6,7 +6,7 @@
 <h1> Contact List</h1>
 
 <table class="table table-striped" >
-	{% for obj in object_list %}
+	
   <thead>
     <tr>
       <th></th>
@@ -14,9 +14,10 @@
       <th>Phone</th>
       <th>Location</th>
     </tr>
+      {% for obj in object_list %}
   </thead>
   <tbody>
-    <tr>
+    <tr class="table table-striped">
       <th scope="row"></th>
       <td><a href='/contacts_list/{{obj.slug}}/'>{{ obj.name }}</td>
       <td>{{ obj.phone }}</td>
