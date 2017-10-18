@@ -58,7 +58,7 @@ class UserContactsCreateView(LoginRequiredMixin, CreateView):
 	form_class = UserContactsCreateForm
 	login_url = '/login/'
 	template_name = 'contacts/contacts_list_form.html'
-	success_url = '/contacts-list/'
+	# success_url = '/contacts-list/'
 
 	def form_valid(self, form):
 		instance = form.save(commit=False)

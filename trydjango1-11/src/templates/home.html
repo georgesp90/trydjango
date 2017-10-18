@@ -1,19 +1,21 @@
 {% extends "landing_base.html" %}
 {% block head_title %}{{ block.super }}{% endblock head_title %}
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
   <div class="container">
-    <h1 class="display-1">Fluid jumbotron</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    <div >
+    <h1 class="display-1" class="mx-auto" style="width: 200px;">11:11 Delivery</h1>
+    <p class="lead">Inspiration a text away</p>
     <p class="lead">
+    </div>
     {% if user.is_authenticated %}
     <a class="btn btn-primary btn-lg" href="/contacts_list/" role="button">Contacts</a>
     {% else %}
-    <div class="mx-auto" style="width: 200px;">
+    
     <a class="btn btn-primary btn-lg" href="/about/" role="button">About</a>
     <a class="btn btn-primary btn-lg" href="/login/" role="button">Login</a>
-  </div>
+
     {% endif %}
     
   </p>
