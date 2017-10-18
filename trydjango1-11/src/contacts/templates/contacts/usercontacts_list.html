@@ -3,18 +3,23 @@
 {% block head_title %}Contacts List || {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-<h1> Contact List</h1>
+<h1> Contact List
+<div class="float-right">
+  <a class="btn btn-primary btn-sm" href="{% url 'contacts:create' %}">Add Contact</a>
+</div>
+</h1> 
 
 <table class="table table-striped" >
 	
   <thead>
     <tr>
-      <th></th>
+      <th> </th>
       <th>Name</th>
       <th>Phone</th>
       <th>Location</th>
-    </tr>
       {% for obj in object_list %}
+    </tr>
+      
   </thead>
   <tbody>
     <tr class="table table-striped">
@@ -26,6 +31,7 @@
   </tbody>
   	{% endfor %}
 </table>
+
 
 <!-- <ul>
 	{% for obj in object_list %}

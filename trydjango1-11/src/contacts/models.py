@@ -16,8 +16,7 @@ class UserContacts(models.Model):
 	location 	= models.CharField(max_length=120, null=True, blank=True)
 	timestamp 	= models.DateTimeField(auto_now_add=True)
 	slug 		= models.SlugField(null=True, blank=True)
-	time_zone 	= models.CharField(max_length=120, null=True, blank=True, 
-								  validators=[validate_timezone])
+	time_zone 	= models.CharField(max_length=120, validators=[validate_timezone])
 
 	def __str__(self):
 		return self.name
