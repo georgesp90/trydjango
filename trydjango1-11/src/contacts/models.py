@@ -24,7 +24,7 @@ class UserContacts(models.Model):
 
 	def get_absolute_url(self):
 		# return f'/contact-detail/{self.slug}'
-		return reverse('contact-detail', kwargs={'slug': self.slug})
+		return reverse('contacts:detail', kwargs={'slug': self.slug})
 
 
 	

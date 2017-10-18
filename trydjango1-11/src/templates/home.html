@@ -10,7 +10,7 @@
     <p class="lead">
     </div>
     {% if user.is_authenticated %}
-    <a class="btn btn-primary btn-lg" href="/contacts_list/" role="button">Contacts</a>
+    <a class="btn btn-primary btn-lg" href="{% url 'contacts:list' %}" role="button">Contacts</a>
     {% else %}
     
     <a class="btn btn-primary btn-lg" href="/about/" role="button">About</a>
