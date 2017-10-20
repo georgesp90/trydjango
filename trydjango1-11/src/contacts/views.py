@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
@@ -8,6 +9,9 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
 from .forms import ContactCreateForm, UserContactsCreateForm
 from .models import UserContacts
+
+User = settings.AUTH_USER_MODEL
+
 
 @login_required()
 def contact_create_view(request):
