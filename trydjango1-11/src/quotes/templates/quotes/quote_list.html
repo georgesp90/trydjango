@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head_title %} Add Quote || {{ block.super }}{% endblock head_title %}
+
+{% block content %}
+<div class="float-right">
+  <a class="btn btn-primary btn-sm" href="{% url 'contacts:create' %}">Add Contact</a>
+</div>
+</h1> 
+
+<table class="table table-striped" >
+	
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Location</th>
+      {% for obj in object_list %}
+    </tr>
+      
+  </thead>
+  <tbody>
+    <tr class="table table-striped">
+      <th scope="row"></th>
+      <td><a href='{{ obj.get_absolute_url }}'>{{ obj.name }}</td>
+      <td>{{ obj.phone }}</td>
+      <td>{{ obj.location }}</td>
+    </tr>
+  </tbody>
+  	{% endfor %}
+</table>
+{% endblock content %}

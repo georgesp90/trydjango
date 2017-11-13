@@ -8,9 +8,9 @@ from django import forms
 
 class Quote(models.Model):
 	# choices
-	motivational 	= 'MOT'
-	spiritual	 	= 'SPR'
-	funny			= 'LOL'
+	motivational 		= 'MOT'
+	spiritual	 		= 'SPR'
+	funny				= 'LOL'
 	TYPE_OF_QUOTE			= (
 			(motivational, 'motivational'),
 			(spiritual, 'spiritual'),
