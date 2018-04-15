@@ -1,11 +1,29 @@
 import random
 import string
+from twilio.rest import Client
+import sys
+
 
 from django.utils.text import slugify
 '''
 random_string_generator is located here:
 http://joincfe.com/blog/random-string-generator-in-python/
 '''
+
+account_sid = ""
+auth_token = ""
+my_twilio = "+1(201) 552-4734"
+welcome_message = "welcome my name is Ellie and im here to inspire!"
+
+
+
+client = Client(account_sid, auth_token)
+
+
+def send_welcome_message():
+    message = client.api.account.messages.create(to=cell, from_=my_twilio,
+                                       body=welcome_message)
+
 
 DONT_USE =['create']
 def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):
@@ -36,3 +54,5 @@ def unique_slug_generator(instance, new_slug=None):
                 )
         return unique_slug_generator(instance, new_slug=new_slug)
     return slug
+
+

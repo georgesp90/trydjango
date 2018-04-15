@@ -4,14 +4,14 @@ from django.db.models.signals import pre_save, post_save
 from django.core.urlresolvers import reverse
 
 
-from .utils import unique_slug_generator
+from .utils import unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message
 from .validators import validate_timezone
 
 
 class UserContacts(models.Model):
 	
 	name	 	= models.CharField(max_length=120)
-	phone 	 	= models.CharField(max_length=9, null=True, blank=True)
+	phone 	 	= models.CharField(max_length=12)
 	location 	= models.CharField(max_length=120, null=True, blank=True)
 	timestamp 	= models.DateTimeField(auto_now_add=True)
 	slug 		= models.SlugField(null=True, blank=True)
@@ -40,16 +40,21 @@ def uc_pre_save_reciever(sender, instance, *args, **kwargs):
 		instance.slug = unique_slug_generator(instance)
 
 
-# def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
-# 	print('saved')
-# 	print(instance.timestamp)
-# 	if not instance.slug:
-# 		instance.slug = unique_slug_generator(instance)
-# 		instance.save()
+def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
+	print('saved')
+	print(instance.name)
+	cell = instance.phone
+	def send_welcome_message():
+		message = client.api.account.messages.create(to=cell, from_=my_twilio, body=welcome_message)
+	send_welcome_message()
+	print(cell)
+	if not instance.slug:
+		instance.slug = unique_slug_generator(instance)
+		instance.save()
 
 	
 pre_save.connect(uc_pre_save_reciever, sender=UserContacts)
 
-# post_save.connect(uc_post_save_reciever, sender=UserContacts)
+post_save.connect(uc_post_save_reciever, sender=UserContacts)
 
 	

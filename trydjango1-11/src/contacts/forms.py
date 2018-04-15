@@ -24,9 +24,7 @@ class UserContactsCreateForm(forms.ModelForm):
 		model = UserContacts
 		fields =[
 			'name',
-			'phone',
-			'location',
-			'time_zone'
+			'phone'
 		]
 
 	def clean_name(self):
