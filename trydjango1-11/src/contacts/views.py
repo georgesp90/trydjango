@@ -58,14 +58,13 @@ class ContactsListView(ListView):
 class ContactsDetailView(DetailView):
 	queryset = UserContacts.objects.all() #filter(location__iexact='nys') #filer it by user
 
-class UserContactsCreateView(LoginRequiredMixin, CreateView):
+class UserContactsCreateView(CreateView):
 	form_class = UserContactsCreateForm
-	login_url = '/login/'
 	template_name = 'contacts/contacts_list_form.html'
 	# success_url = '/contacts-list/'
 
 	def form_valid(self, form):
 		instance = form.save(commit=False)
-		instance.owner = self.request.user
+		instance.owner = None
 		return super(UserContactsCreateView, self).form_valid(form)
 
