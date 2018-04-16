@@ -15,8 +15,7 @@ def is_valid_number(value):
         return True
     except TwilioRestException as e:
         if e.code in [20404, 21211]:
-        	raise ValidationError(f'{value} is not a valid number'
-			'please enter valid US phone nuber')
+        	raise ValidationError(f'{value} is not a valid number')
 
 def validate_even(value):
     if value % 2 != 0:
