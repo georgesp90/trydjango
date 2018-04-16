@@ -1,5 +1,22 @@
 from django.core.exceptions import ValidationError
+from twilio.rest import Client
+from twilio.base.exceptions import TwilioRestException
 
+# Your Account Sid and Auth Token from twilio.com/user/account
+# Store them in the environment variables:
+# "TWILIO_ACCOUNT_SID" and "TWILIO_AUTH_TOKEN"
+account_sid = ""
+auth_token = ""
+client = Client(account_sid, auth_token)
+
+def is_valid_number(value):
+    try:
+        response = client.lookups.phone_numbers(value).fetch(type="carrier")
+        return True
+    except TwilioRestException as e:
+        if e.code in [20404, 21211]:
+        	raise ValidationError(f'{value} is not a valid number'
+			'please enter valid US phone nuber')
 
 def validate_even(value):
     if value % 2 != 0:

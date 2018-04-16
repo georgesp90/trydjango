@@ -5,13 +5,13 @@ from django.core.urlresolvers import reverse
 
 
 from .utils import unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message
-from .validators import validate_timezone
+from .validators import validate_timezone, is_valid_number
 
 
 class UserContacts(models.Model):
 	
 	name	 	= models.CharField(max_length=120)
-	phone 	 	= models.CharField(max_length=12)
+	phone 	 	= models.CharField(max_length=20, validators=[is_valid_number])
 	location 	= models.CharField(max_length=120, null=True, blank=True)
 	timestamp 	= models.DateTimeField(auto_now_add=True)
 	slug 		= models.SlugField(null=True, blank=True)
