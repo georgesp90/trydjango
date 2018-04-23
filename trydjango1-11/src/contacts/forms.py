@@ -6,7 +6,7 @@ from .validators import validate_timezone
 
 class ContactCreateForm(forms.Form):
 	name	 	= forms.CharField()
-	phone 	 	= forms.CharField(required=False)
+	phone 	 	= forms.IntegerField(required=True)
 	location 	= forms.CharField(required=False)
 	time_zone   = forms.CharField()
 

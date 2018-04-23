@@ -4,14 +4,14 @@ from django.db.models.signals import pre_save, post_save
 from django.core.urlresolvers import reverse
 
 
-from .utils import unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message
+from .utils import unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message,send_welcome_message
 from .validators import validate_timezone, is_valid_number
 
 
 class UserContacts(models.Model):
 	
 	name	 	= models.CharField(max_length=120)
-	phone 	 	= models.CharField(max_length=20, validators=[is_valid_number])
+	phone 	 	= models.IntegerField(max_length=20, validators=[is_valid_number])
 	location 	= models.CharField(max_length=120, null=True, blank=True)
 	timestamp 	= models.DateTimeField(auto_now_add=True)
 	slug 		= models.SlugField(null=True, blank=True)
@@ -44,9 +44,12 @@ def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
 	print('saved')
 	print(instance.name)
 	cell = instance.phone
-	def send_welcome_message():
-		message = client.api.account.messages.create(to=cell, from_=my_twilio, body=welcome_message)
-	send_welcome_message()
+	welcome_data = {
+		'to': cell, 
+		'from_': my_twilio, 
+		'body': welcome_message
+	}
+	send_welcome_message(**welcome_data)
 	print(cell)
 	if not instance.slug:
 		instance.slug = unique_slug_generator(instance)

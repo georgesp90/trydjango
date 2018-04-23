@@ -5,7 +5,7 @@
 {% block content %}
 <h1> Contact List
 <div class="float-right">
-  <a class="btn btn-primary btn-sm" href="{% url 'contacts:create' %}">Add Contact</a>
+  <a class="btn btn-primary btn-sm" href="{% url 'contacts:create' %}">Sign up</a>
 </div>
 </h1> 
 
@@ -16,7 +16,6 @@
       <th> </th>
       <th>Name</th>
       <th>Phone</th>
-      <th>Location</th>
       {% for obj in object_list %}
     </tr>
       
@@ -26,7 +25,6 @@
       <th scope="row"></th>
       <td><a href='{{ obj.get_absolute_url }}'>{{ obj.name }}</td>
       <td>{{ obj.phone }}</td>
-      <td>{{ obj.location }}</td>
     </tr>
   </tbody>
   	{% endfor %}

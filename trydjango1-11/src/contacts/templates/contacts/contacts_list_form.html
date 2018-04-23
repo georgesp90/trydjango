@@ -1,18 +1,29 @@
 {% extends "base.html" %}
 
-{% block head_title %} Add Contact || {{ block.super }}{% endblock head_title %}
+{% block head_title %} Sign Up || {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-<h1>Add Contact</h1> 
+
+<div class="jumbotron jumbotron-fluid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
+
+  <div class="container">
+    <div >
+    <!-- <h1 class="display-2" class="mx-auto" style="width: 100px;"></h1> -->
+    <h1>Sign UP</h1>
+    </div>
+    <form method="POST"> {% csrf_token %}
+		<div class="form-group">
+		{{ form.as_p }}
+		<button class="btn btn-primary" type="submit">Save</button>
+		</div>
+	</form>
+  </div>
+</div>
+
 {% if form.errors.non_field_errors %}
 {{ form.errors.non_field_errors }}
 {% endif %}
-<form method="POST"> {% csrf_token %}
-	<div class="form-group">
-	{{ form.as_p }}
-	<button class="btn btn-primary" type="submit">Save</button>
-	</div>
-</form>
+
 {% endblock content %}
 
 
