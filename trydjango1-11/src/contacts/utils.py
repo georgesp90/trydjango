@@ -10,8 +10,8 @@ random_string_generator is located here:
 http://joincfe.com/blog/random-string-generator-in-python/
 '''
 
-account_sid = "ACbbbd9efe355a2376772ffcf060f6794a"
-auth_token = "c025f7bb1a54431e67824b107bca44a9"
+account_sid = ""
+auth_token = ""
 my_twilio = "+1(201) 552-4734"
 welcome_message = "welcome my name is Ellie and im here to inspire!"
 

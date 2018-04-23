@@ -19,20 +19,6 @@ def is_valid_number(value):
         else:
         	raise ValidationError(f'{value} is not a valid number')
 
-def validate_even(value):
-    if value % 2 != 0:
-        raise ValidationError(
-            '%(value)s is not an even number',
-            params={'value': value},
-        )
-
-
-def clean_email(self):
-	email = value
-	if ".edu" in email:
-		raise forms.ValidationError('We do not accept edu emails ')
-
-
 TIMEZONES = ['Alaskan', 'Central', 'Eastern', 'Hawaiian', 'Pacific', 'Mountain']
 
 def validate_timezone(value):
