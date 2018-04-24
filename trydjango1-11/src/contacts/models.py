@@ -11,7 +11,7 @@ from .validators import validate_timezone, is_valid_number
 class UserContacts(models.Model):
 	
 	name	 	= models.CharField(max_length=120)
-	phone 	 	= models.IntegerField(max_length=20, validators=[is_valid_number])
+	phone 	 	= models.IntegerField(validators=[is_valid_number])
 	location 	= models.CharField(max_length=120, null=True, blank=True)
 	timestamp 	= models.DateTimeField(auto_now_add=True)
 	slug 		= models.SlugField(null=True, blank=True)
