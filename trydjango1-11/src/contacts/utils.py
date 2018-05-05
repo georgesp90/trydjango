@@ -15,7 +15,7 @@ auth_token = ""
 my_twilio = "+1(201) 552-4734"
 welcome_message = "welcome my name is Ellie and im here to inspire!"
 
-
+contacts_to_message = {}
 
 client = Client(account_sid, auth_token)
 

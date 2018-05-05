@@ -4,7 +4,7 @@ from django.db.models.signals import pre_save, post_save
 from django.core.urlresolvers import reverse
 
 
-from .utils import unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message,send_welcome_message
+from .utils import unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message, send_welcome_message, contacts_to_message
 from .validators import validate_timezone, is_valid_number
 
 
@@ -41,16 +41,18 @@ def uc_pre_save_reciever(sender, instance, *args, **kwargs):
 
 
 def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
-	print('saved')
-	print(instance.name)
+	name = instance.name
 	cell = instance.phone
+	new_contact = {name:cell}
 	welcome_data = {
 		'to': cell, 
 		'from_': my_twilio, 
 		'body': welcome_message
 	}
 	send_welcome_message(**welcome_data)
-	print(cell)
+	contacts_to_message.update(new_contact)
+	print(contacts_to_message)
+	# create a new dict with instance.name(name) &instance.phone(value)
 	if not instance.slug:
 		instance.slug = unique_slug_generator(instance)
 		instance.save()
