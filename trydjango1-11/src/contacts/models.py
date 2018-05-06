@@ -52,7 +52,6 @@ def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
 	send_welcome_message(**welcome_data)
 	contacts_to_message.update(new_contact)
 	print(contacts_to_message)
-	# create a new dict with instance.name(name) &instance.phone(value)
 	if not instance.slug:
 		instance.slug = unique_slug_generator(instance)
 		instance.save()

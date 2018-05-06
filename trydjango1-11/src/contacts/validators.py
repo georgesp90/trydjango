@@ -15,9 +15,9 @@ def is_valid_number(value):
         return True
     except TwilioRestException as e:
         if e.code in [20404, 21211]:
-        	raise ValidationError(f'{value} is not a valid number')
+        	raise ValidationError('{value} is not a valid number')
         else:
-        	raise ValidationError(f'{value} is not a valid number')
+        	raise ValidationError('{value} is not a valid number') 
 
 TIMEZONES = ['Alaskan', 'Central', 'Eastern', 'Hawaiian', 'Pacific', 'Mountain']
 
@@ -25,5 +25,5 @@ def validate_timezone(value):
 	list_tz =[tz for tz in TIMEZONES]
 	cap  = value.capitalize()
 	if not value in TIMEZONES and not cap in TIMEZONES:
-		raise ValidationError(f'{value} is not a valid timezone'
+		raise ValidationError('{value} is not a valid timezone'
 		' please enter valid US timezone:' + str(list_tz))
