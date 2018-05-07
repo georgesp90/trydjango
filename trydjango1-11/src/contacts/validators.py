@@ -5,8 +5,8 @@ from twilio.base.exceptions import TwilioRestException
 # Your Account Sid and Auth Token from twilio.com/user/account
 # Store them in the environment variables:
 # "TWILIO_ACCOUNT_SID" and "TWILIO_AUTH_TOKEN"
-account_sid = "ACbbbd9efe355a2376772ffcf060f6794a"
-auth_token = "c025f7bb1a54431e67824b107bca44a9"
+account_sid = ""
+auth_token = ""
 client = Client(account_sid, auth_token)
 
 def is_valid_number(value):
@@ -15,9 +15,9 @@ def is_valid_number(value):
         return True
     except TwilioRestException as e:
         if e.code in [20404, 21211]:
-        	raise ValidationError('{value} is not a valid number')
+        	raise ValidationError('Phone number entered is not an active number')
         else:
-        	raise ValidationError('{value} is not a valid number') 
+        	raise ValidationError('Phone number entered is not an active number')
 
 TIMEZONES = ['Alaskan', 'Central', 'Eastern', 'Hawaiian', 'Pacific', 'Mountain']
 

@@ -2,6 +2,10 @@ import random
 import string
 from twilio.rest import Client
 import sys
+import schedule
+import datetime
+
+
 
 
 from django.utils.text import slugify
@@ -10,10 +14,11 @@ random_string_generator is located here:
 http://joincfe.com/blog/random-string-generator-in-python/
 '''
 
-account_sid = "ACbbbd9efe355a2376772ffcf060f6794a"
-auth_token = "c025f7bb1a54431e67824b107bca44a9"
+account_sid = ""
+auth_token = ""
 my_twilio = "+1(201) 552-4734"
 welcome_message = "welcome my name is Ellie and im here to inspire!"
+test_message = "you did it"
 
 contacts_to_message = {}
 
@@ -22,6 +27,16 @@ client = Client(account_sid, auth_token)
 
 def send_welcome_message(**kwargs):
     message = client.api.account.messages.create(**kwargs)
+
+
+def send_qoute_to_multi_contacts():
+    q = UserContacts.objects.values('phone')
+    for phone in q:
+        print('doing')
+        message = client.messages.create(to=phone, from_=my_twilio, 
+                            body=welcome_message)
+
+schedule.every().day.at("21:14").do(send_qoute_to_multi_contacts)
 
 
 DONT_USE =['create']

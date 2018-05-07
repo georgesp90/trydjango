@@ -12,7 +12,7 @@ class ContactCreateForm(forms.Form):
 
 	def clean_name(self):
 		name = self.cleaned_data.get("name")
-		if name == 'Hello':
+		if name == 'Hellos':
 			raise forms.ValidationError('Not a valid name')
 		return name
 
@@ -27,11 +27,12 @@ class UserContactsCreateForm(forms.ModelForm):
 			'phone'
 		]
 
-	def clean_name(self):
-		name = self.cleaned_data.get("name")
-		if name == 'Hello':
-			raise forms.ValidationError('Not a valid name')
-		return name
+	def clean_phone(self):
+		phone = self.cleaned_data.get("phone")
+		qs = UserContacts.objects.filter(phone__iexact=phone)
+		if qs.exists():
+			raise forms.ValidationError('Phone Number already registered')
+		return phone
 
 	# def clean_email(self):
 	# 	email = self.cleaned_data.get("email")
