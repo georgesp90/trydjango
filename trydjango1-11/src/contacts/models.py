@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 
 import schedule
 import datetime
+import time 
 
 from .utils import unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message,test_message, send_welcome_message, contacts_to_message
 from .validators import validate_timezone, is_valid_number
@@ -58,13 +59,19 @@ def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
 		instance.slug = unique_slug_generator(instance)
 		instance.save()
 
-def send_qoute_to_multi_contacts():
-    for cell in contacts_to_message.items():
-        print('doing')
-        message = client.messages.create(to=cell, from_=my_twilio, 
-                            body=test_message)
+# def send_quote_to_multi_contacts():
+# 	q = UserContacts.objects.values('phone')
+# 	for phone in q:
+# 		message.client.messages.create(to=phone, from_=my_twilio, body=test_message)
 
-schedule.every().day.at("01:33").do(send_qoute_to_multi_contacts)
+
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
+
+
+# schedule.every().day.at("16:38").do(send_qoute_to_multi_contacts)
+
 
 	
 pre_save.connect(uc_pre_save_reciever, sender=UserContacts)

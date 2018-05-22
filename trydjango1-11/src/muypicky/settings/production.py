@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions'
+    'django_extensions',
+    'django_celery_results'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,6 +86,9 @@ DATABASES = {
     }
 }
 
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_BACKEND = 'django-cache'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
