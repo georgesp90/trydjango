@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="jumbotron jumbotron-fluid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
+<!-- <div class="jumbotron jumbotron-fluid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);"> -->
 
   <div class="container">
     <div >
@@ -18,7 +18,20 @@
 		</div>
 	</form>
   </div>
-</div>
+<!-- </div> -->
+<script type="text/javascript">
+	var colors = ['#feafbc', '#f4b3dc','#c19bdf','#70d0ec','#9ae7d9'];
+
+	var changeBackground = function() {
+	    document.body.style.background = colors[Math.floor(Math.random()*colors.length)];
+	};
+
+	changeBackground();
+
+	function refresh() {
+	  history.go();
+	}
+</script>
 
 {% if form.errors.non_field_errors %}
 {{ form.errors.non_field_errors }}
