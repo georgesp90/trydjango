@@ -1,3 +1,99 @@
 <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	var colors = ['#feafbc', '#f4b3dc','#c19bdf','#70d0ec','#9ae7d9'];
+
+	var changeBackground = function() {
+	    document.body.style.background = colors[Math.floor(Math.random()*colors.length)];
+	};
+
+	changeBackground();
+
+	function refresh() {
+	  history.go();
+	}
+
+	var quotes = ['MY FACE SAYS IT ALL', 
+              'I HOPE EVERYTHING WORKS OUT ',
+              'I REALLY SUCK AT THIS INTERNET SHIT', 
+              'OKAY I’M LOST',
+              'I HATE LEAVING VOICEMAILS', 
+              'YOU’RE SO FUCKING ANNOYING', 
+              'I CAN’T FUCKING STAND YOU', 
+              'MAYBE THIS JUST ISN’T FOR ME',
+              'I DON’T KNOW ANYMORE', 
+              'FUCK MAN', 
+              'LOVE IS SIMPLE BUT WE FUCK IT UP WITH EXPECTATIONS', 
+              'FUCK DOUBTS',
+              'EVERYTHING IS GOING TO BE OKAY',
+              'TAKE YOUR BULLSHIT SOMEWHERE ELSE PLEASE',
+              'FEELING OVERWHELMED',
+              'KISS MY ASS',
+              'I LOVE YOU SO MUCH',
+              'THERE YOU GO FUCKING UP MY DAY AGAIN',
+              'WHAT DO YOU WANT?',
+              'I WANNA SCREAM RIGHT NOW',
+              'OKAY, I FINISHED THE BOTTLE',
+              'LIFE IS STRANGE',
+              'WHERE DID MY HEART GO?',
+              "I'M NOT PERFECT",
+              'I HATE THINKING ABOUT THE INTERNET',
+              'AM I REALLY HAPPY?',
+              'FUCK KYLIE JENNER',
+              'I LOVE KYLIE JENNER',
+              'FUCK I’M BROKE',
+              'I CAN’T FEEL ANYTHING',
+              'I HATE THE INTERNET',
+              'I’M NEVER EXCITED',
+              'WILL I EVER BE HAPPY?',
+              'I FEEL LOST SOMETIMES',
+              'STILL TRYING TO FIGURE IT OUT',
+              'DAMN, I KEEP FUCKING UP',
+              'BUTT STUFF',
+              'BITCH!',
+              'I HAVEN’T BEEN CHASING MY LIQOUR LATELY',
+              'THAT BOTTLE ON TOP OF THE FRIDGE IS ALMOST OUT',
+              'I HAVEN’T SEEN A BARBER IN MONTHS',
+              'NOBODY WANTS TO LOSE',
+              'EVERYTHING IS CHANGING',
+              'FUCK, THIS IS A LOT',
+              'I LOVE SEX',
+              'NOTHING EVER GOES AS PLANNED',
+              'MORE SEX',
+              'FEELING EMPTY INSIDE',
+              'WHEN COFFEE DOESN’T WORK',
+              'LOSING MY PATIENCE RIGHT NOW',
+              'RACISM IS A LIE',
+              'STRESS IS TOO MUCH',
+              'MY HAIR IS STILL GROWING',
+              'SOME HEAD WOULD BE NICE',
+              'DRUGS CAN BE GOOD, IF USED RESPONSIBLY',
+              'FUCK RENT',
+              "I'M IN PAIN BUT, LIFE IS BEAUTIFUL",
+              "MOM, DON'T WORRY",
+              "I JUST WANNA FUCKING WIN",
+              "I DON'T FUCKING CARE",
+              "THE INTERNET'S A FUCKING JOKE",
+              "I HATE DOUBT",
+              "DOUBT KILLS, SO STOP DOING IT"
+             ];
+
+
+	function getQuotes() {
+	    var player1 = new Array();
+	    quotes.sort(function() {
+	        return Math.random() - .50
+	    });
+	    var quoteContainer= document.getElementById("quoteContainer");
+	    for (var i = 1; i <= 1; i++) {
+	        player1.push(quotes[i]);
+	        var div = document.createElement("div");
+	        div.innerHTML = (quotes[i]);
+	        quoteContainer.appendChild(div);
+	    }
+	}
+
+	getQuotes();
+</script>
