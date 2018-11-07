@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 
-{% block head_title %}Contacts List || {{ block.super }}{% endblock head_title %}
+{% block head_title %}Thanks{% endblock head_title %}
 
 {% block content %}
-<h1>{{ object.name }}</h1> 
-<p> <small> |Phone:{{ object.phone }}|Location:{{ object.location }}|Added: {{ object.timestamp }}|</small></p>
-{% endblock content %}
+<div class="container">
+	<center>
+		<div id="thanks"> 
+			Thanks {{ object.name }}
+		</div> 
+	</center>
+</div>
+<!-- <p> <small> |Phone:{{ object.phone }}|Added: {{ object.timestamp }}|</small></p>
+ -->
+ {% endblock content %}

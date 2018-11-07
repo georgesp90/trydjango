@@ -1,23 +1,36 @@
 {% extends "base.html" %}
 
-{% block head_title %} Sign Up || {{ block.super }}{% endblock head_title %}
+{% block head_title %} Sign Up {% endblock head_title %}
 
 {% block content %}
 
-<!-- <div class="jumbotron jumbotron-fluid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);"> -->
   <div class="container">
      <div id="quoteContainer">
      </div>
-      <form method="POST"> {% csrf_token %}
-		<div class="form-group">
-		{{ form.as_p }}
-		<button class="btn btn-primary" type="submit">Save</button>
-		</div>
-	</form>
+     <center>
+     	</br>
+	     	<p>
+		  		<a class="btn btn-info" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
+		    		Get Inspired
+		  		</a>
+		  	</p>
+	      		<form method="POST"> {% csrf_token %}
+					<div class="collapse" id="collapseForm">
+						<div class="form-group">
+
+							</br>
+							<p> {{ form.name }} </p>
+							<p> {{ form.phone }} </p>
+							</br>
+							<button class="btn btn-info" type="submit">Inspire</button>
+				
+						</div>
+					</div>
+					<p>	{{ form.errors}} </p>
+				</form>
+	</center>
   </div>
  
-<!-- </div> -->
-
 {% if form.errors.non_field_errors %}
 {{ form.errors.non_field_errors }}
 {% endif %}
