@@ -6,8 +6,10 @@ from django.core.urlresolvers import reverse
 import schedule
 import datetime
 import time 
+import random
 
-from .utils import unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message,test_message, send_welcome_message, contacts_to_message
+from .utils import (unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message,test_message, send_welcome_message, contacts_to_message,
+my_quote)
 from .validators import validate_timezone, is_valid_number
 
 
@@ -50,7 +52,7 @@ def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
 	welcome_data = {
 		'to': cell, 
 		'from_': my_twilio, 
-		'body': welcome_message
+		'body': my_quote()
 	}
 	send_welcome_message(**welcome_data)
 	contacts_to_message.update(new_contact)

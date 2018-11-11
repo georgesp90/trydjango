@@ -14,21 +14,29 @@
 		    		Get Inspired
 		  		</a>
 		  	</p>
+		  	<p>
+		  	<button class="btn btn-link sign-in-facebook" type="submit" onClick="refreshPage()">
+		  	</button>
+		    </p>
 	      		<form method="POST"> {% csrf_token %}
 					<div class="collapse" id="collapseForm">
 						<div class="form-group">
 
 							</br>
-							<!-- <p> {{ form.name }} </p> -->
-							<p> {{ form.phone }} 
-							 <button class="btn btn-info" type="submit">Submit</button>
-							 </p>
-							</br>
+							<dir class="form-group mx-sm-3 mb-2">
+								 <p> {{ form.phone }} 
+								 	<button class="btn btn-info mb-2" type="submit">Submit</button>
+								 </p>
+							</div>
 							
 				
 						</div>
 					</div>
-					<p>	{{ form.errors}} </p>
+					<div role="alert">
+						<center>
+						<p> {{ form.errors}} </p>
+						</center>
+					</div>
 				</form>
 	</center>
   </div>
