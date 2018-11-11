@@ -1,22 +1,49 @@
 {% extends "base.html" %}
 
-{% block head_title %} Add Contact || {{ block.super }}{% endblock head_title %}
+{% block head_title %} Sign Up {% endblock head_title %}
 
 {% block content %}
-<h1>Add Contact</h1> 
+
+  <div class="container">
+     <div id="quoteContainer">
+     </div>
+     <center>
+     	</br>
+	     	<p>
+		  		<a class="btn btn-info" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
+		    		Get Inspired
+		  		</a>
+		  	</p>
+		  	<p>
+		  	<button class="btn btn-link sign-in-facebook" type="submit" onClick="refreshPage()">
+		  	</button>
+		    </p>
+	      		<form method="POST"> {% csrf_token %}
+					<div class="collapse" id="collapseForm">
+						<div class="form-group">
+
+							</br>
+							<dir class="form-group mx-sm-3 mb-2">
+								 <p> {{ form.phone }} 
+								 	<button class="btn btn-info mb-2" type="submit">Submit</button>
+								 </p>
+							</div>
+							
+				
+						</div>
+					</div>
+					<div role="alert">
+						<center>
+						<p> {{ form.errors}} </p>
+						</center>
+					</div>
+				</form>
+	</center>
+  </div>
+ 
 {% if form.errors.non_field_errors %}
 {{ form.errors.non_field_errors }}
 {% endif %}
-<form method="POST"> {% csrf_token %}
-	<div class="form-group">
-	{{ form.as_p }}
-	<button class="btn btn-primary" type="submit">Save</button>
-	</div>
-</form>
+
 {% endblock content %}
 
-
-
-<!-- 	<input type="text" name="name" placeholder="Contact Name"><br/>
-	<input type="text" name="phone" placeholder="Contact Number"><br/>
-	<input type="text" name="location" placeholder="location"><br/> -->

@@ -3,16 +3,20 @@ from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.core.urlresolvers import reverse
 
+import schedule
+import datetime
+import time 
+import random
 
-from .utils import unique_slug_generator
-from .validators import validate_timezone
+from .utils import (unique_slug_generator, account_sid, auth_token, client, my_twilio, welcome_message,test_message, send_welcome_message, contacts_to_message,
+my_quote)
+from .validators import validate_timezone, is_valid_number
 
-User = settings.AUTH_USER_MODEL
 
 class UserContacts(models.Model):
-	owner 		= models.ForeignKey(User)
+	
 	name	 	= models.CharField(max_length=120)
-	phone 	 	= models.CharField(max_length=9, null=True, blank=True)
+	phone 	 	= models.IntegerField(validators=[is_valid_number])
 	location 	= models.CharField(max_length=120, null=True, blank=True)
 	timestamp 	= models.DateTimeField(auto_now_add=True)
 	slug 		= models.SlugField(null=True, blank=True)
@@ -41,16 +45,39 @@ def uc_pre_save_reciever(sender, instance, *args, **kwargs):
 		instance.slug = unique_slug_generator(instance)
 
 
-# def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
-# 	print('saved')
-# 	print(instance.timestamp)
-# 	if not instance.slug:
-# 		instance.slug = unique_slug_generator(instance)
-# 		instance.save()
+def uc_post_save_reciever(sender, instance, created, *args, **kwargs):
+	name = instance.name
+	cell = instance.phone
+	new_contact = {name:cell}
+	welcome_data = {
+		'to': cell, 
+		'from_': my_twilio, 
+		'body': my_quote()
+	}
+	send_welcome_message(**welcome_data)
+	contacts_to_message.update(new_contact)
+	print(contacts_to_message)
+	if not instance.slug:
+		instance.slug = unique_slug_generator(instance)
+		instance.save()
+
+# def send_quote_to_multi_contacts():
+# 	q = UserContacts.objects.values('phone')
+# 	for phone in q:
+# 		message.client.messages.create(to=phone, from_=my_twilio, body=test_message)
+
+
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
+
+
+# schedule.every().day.at("16:38").do(send_qoute_to_multi_contacts)
+
 
 	
 pre_save.connect(uc_pre_save_reciever, sender=UserContacts)
 
-# post_save.connect(uc_post_save_reciever, sender=UserContacts)
+post_save.connect(uc_post_save_reciever, sender=UserContacts)
 
 	
