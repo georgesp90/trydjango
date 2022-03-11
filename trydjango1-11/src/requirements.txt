@@ -19,7 +19,7 @@ mock==2.0.0
 model-mommy==1.4.0
 olefile==0.44
 pbr==3.1.1
-Pillow==4.2.1
+Pillow==9.0.1
 psycopg2==2.7.3.1
 PyJWT==1.5.3
 PySocks==1.6.7
